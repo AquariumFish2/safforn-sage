@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "fullName": "",
+      "email": "",
+      "password": "",
+      "role": "student",
+      "id": "5u7e-OJ5x9k"
+    },
+    {
+      "fullName": "mohamed mabrouk",
+      "email": "mohamed@gmail.com",
+      "password": "01027900425Aa",
+      "role": "student",
+      "id": "gY9kFrS26os"
+    },
+    {
+      "fullName": "mohamed mabrouk",
+      "email": "mohamed@gmail.com",
+      "password": "01027900425Aa",
+      "role": "totur",
+      "id": "JjVwjOxUP5I"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -1,0 +1,121 @@
+import FreeBreakfastIcon from "@mui/icons-material/FreeBreakfast";
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
+import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
+
+export const tiers = [
+  {
+    title: "Free",
+    price: "0",
+    period: "forever",
+    description: "Dip your toes into halal cooking.",
+    icon: <FreeBreakfastIcon sx={{ fontSize: 24 }} />,
+    iconBg: "linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%)",
+    iconColor: "#555",
+    popular: false,
+    features: [
+      { text: "Access to basic recipes", included: true },
+      { text: "Save up to 10 favorites", included: true },
+      { text: "Community forum access", included: true },
+      { text: "Ad-free experience", included: false },
+      { text: "Nutritional breakdowns", included: false },
+      { text: "Meal planning tools", included: false },
+      { text: "Chef-curated collections", included: false },
+    ],
+    buttonText: "Start for free",
+    buttonSx: {
+      color: "#802A00",
+      borderColor: "#802A00",
+      "&:hover": { bgcolor: "#FFDBCF", borderColor: "#5c1e00" },
+    },
+    buttonVariant: "outlined",
+    cardBorder: "1.5px solid #eeddd6",
+    cardShadow: "0 4px 24px rgba(0,0,0,0.05)",
+    cardHoverShadow: "0 16px 48px rgba(0,0,0,0.10)",
+    accentColor: "#4caf50",
+  },
+  {
+    title: "Smart",
+    price: "9",
+    period: "per month",
+    description: "Elevate your home cooking game.",
+    icon: <RestaurantMenuIcon sx={{ fontSize: 24 }} />,
+    iconBg: "linear-gradient(135deg, #802A00 0%, #b83d00 100%)",
+    iconColor: "#fff",
+    popular: true,
+    features: [
+      { text: "All premium recipes", included: true },
+      { text: "Unlimited favorites", included: true },
+      { text: "Ad-free experience", included: true },
+      { text: "Nutritional breakdowns", included: true },
+      { text: "Basic meal planning", included: true },
+      { text: "Chef-curated collections", included: false },
+      { text: "Priority support", included: false },
+    ],
+    buttonText: "Get Smart",
+    priceId: "price_1TT6DeBbPnudb4jzA4idHIHI",
+    buttonSx: {
+      background: "linear-gradient(135deg, #802A00, #c94a0a)",
+      color: "white",
+      boxShadow: "0 4px 16px rgba(128,42,0,0.3)",
+      "&:hover": {
+        background: "linear-gradient(135deg, #5c1e00, #a33200)",
+        boxShadow: "0 6px 24px rgba(128,42,0,0.45)",
+      },
+    },
+    buttonVariant: "contained",
+    cardBorder: "2px solid #802A00",
+    cardShadow: "0 8px 40px rgba(128,42,0,0.12)",
+    cardHoverShadow: "0 24px 64px rgba(128,42,0,0.2)",
+    accentColor: "#802A00",
+  },
+  {
+    title: "Family",
+    price: "19",
+    period: "per month",
+    description: "Delight every member of the family.",
+    icon: <FamilyRestroomIcon sx={{ fontSize: 24 }} />,
+    iconBg: "linear-gradient(135deg, #4a1a6b 0%, #7b2fa8 100%)",
+    iconColor: "#fff",
+    popular: false,
+    features: [
+      { text: "Everything in Smart", included: true },
+      { text: "Up to 6 family accounts", included: true },
+      { text: "Advanced meal planning & grocery lists", included: true },
+      { text: "Customizable serving sizes", included: true },
+      { text: "Chef-curated collections", included: true },
+      { text: "Priority customer support", included: true },
+      { text: "Early access to new features", included: true },
+    ],
+    buttonText: "Go Family",
+    priceId: "price_1TT6E3BbPnudb4jz4sCFAEUC",
+    buttonSx: {
+      background: "linear-gradient(135deg, #4a1a6b, #7b2fa8)",
+      color: "white",
+      "&:hover": { background: "linear-gradient(135deg, #36124e, #5e227f)" },
+    },
+    buttonVariant: "contained",
+    cardBorder: "1.5px solid #e8d5f5",
+    cardShadow: "0 4px 24px rgba(74,26,107,0.07)",
+    cardHoverShadow: "0 16px 48px rgba(74,26,107,0.14)",
+    accentColor: "#7b2fa8",
+  },
+];
+
+export const faqs = [
+  {
+    q: "Can I switch plans later?",
+    a: "Absolutely. You can upgrade or downgrade at any time. Changes take effect immediately and we'll pro-rate the difference.",
+  },
+  {
+    q: "What happens to my favorites if I downgrade?",
+    a: "If you downgrade to Free, your extra favorites are safely stored. They'll be waiting for you when you upgrade again — we never delete your data.",
+  },
+  {
+    q: "Do you offer refunds?",
+    a: "We offer a 14-day money-back guarantee for all new paid subscriptions, no questions asked.",
+  },
+  {
+    q: "Is the payment secure?",
+    a: "Yes. All payments are securely processed by Stripe. We never store your payment details on our servers.",
+  },
+];
