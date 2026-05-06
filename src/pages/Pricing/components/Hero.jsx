@@ -1,8 +1,10 @@
 import { Box, Chip, Container, Typography } from '@mui/material'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 
 export default function Hero() {
+    const { t } = useTranslation();
     return (
         <Box
             sx={{
@@ -26,7 +28,7 @@ export default function Hero() {
         >
             <Container maxWidth="md">
                 <Chip
-                    label="PRICING"
+                    label={t("pricing.hero.overline")}
                     icon={<AutoAwesomeIcon sx={{ fontSize: "14px !important", color: "#802A00 !important" }} />}
                     sx={{
                         mb: 3,
@@ -50,9 +52,9 @@ export default function Hero() {
                         lineHeight: 1.15,
                     }}
                 >
-                    One plan for every{" "}
+                    {t("pricing.hero.title_part1")}{" "}
                     <Box component="span" sx={{ color: "#802A00" }}>
-                        kitchen
+                        {t("pricing.hero.title_part2")}
                     </Box>
                 </Typography>
                 <Typography
@@ -66,7 +68,7 @@ export default function Hero() {
                         fontSize: { xs: "1rem", md: "1.1rem" },
                     }}
                 >
-                    Simple, transparent pricing. No hidden fees, no surprises. Cancel anytime.
+                    {t("pricing.hero.subtitle")}
                 </Typography>
             </Container>
         </Box>

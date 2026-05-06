@@ -1,44 +1,17 @@
-import React from "react";
 import {
   Box, Typography, Grid, Button, Stack, Container, Paper,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-
-const FEATURES = [
-  "Customized meal plans based on your caloric needs",
-  "Over 1,000+ keto, vegan, and balanced recipes",
-  "Weekly grocery lists perfectly matched to your diet",
-  "Track your daily macros seamlessly in our app",
-];
+import { useTranslation } from "react-i18next";
 
 export default function BestDiets() {
+  const { t } = useTranslation();
   return (
-    <Box
-      sx={{
-        py: { xs: 10, md: 18 },
-        bgcolor: "var(--sage-light)",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      {/* Decorative circle */}
-      <Box
-        sx={{
-          position: "absolute",
-          bottom: "-5%",
-          left: "-5%",
-          width: "300px",
-          height: "300px",
-          bgcolor: "var(--sage-mist)",
-          borderRadius: "50%",
-          zIndex: 0,
-        }}
-      />
-
-      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-        <Grid container spacing={{ xs: 6, md: 8 }} alignItems="center">
+    <Box sx={{ py: { xs: 10, md: 18 }, bgcolor: "var(--sage-light)" }}>
+      <Container maxWidth="lg">
+        <Grid container spacing={{ xs: 6, md: 8 }} sx={{ alignItems: "center" }} >
           {/* Image Side */}
           <Grid size={{ xs: 12, md: 6 }}>
             <Box sx={{ position: "relative" }}>
@@ -77,10 +50,10 @@ export default function BestDiets() {
                   boxShadow: "0 16px 36px rgba(128, 42, 0, 0.25)",
                 }}
               >
-                <Stack direction="row" spacing={1} alignItems="center">
+                <Stack direction="row" spacing={1} sx={{alignItems:"center"}}>
                   <AutoAwesomeIcon fontSize="small" />
                   <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
-                    Certified Expert Plans
+                    {t("best_diets.expert_badge")}
                   </Typography>
                 </Stack>
               </Paper>
@@ -100,7 +73,7 @@ export default function BestDiets() {
                   display: "block",
                 }}
               >
-                Lifestyle & Planning
+                {t("best_diets.overline")}
               </Typography>
               <Typography
                 variant="h2"
@@ -111,12 +84,12 @@ export default function BestDiets() {
                   color: "var(--charcoal)",
                 }}
               >
-                Follow the Best{" "}
+                {t("best_diets.title_part1")}{" "}
                 <Box
                   component="span"
                   sx={{ color: "var(--saffron)", fontStyle: "italic" }}
                 >
-                  Diets & Planning
+                  {t("best_diets.title_part2")}
                 </Box>
               </Typography>
 
@@ -129,14 +102,11 @@ export default function BestDiets() {
                   lineHeight: 1.8,
                 }}
               >
-                Discover tailored nutritional plans to hit your health goals.
-                Whether you're looking for Keto, Mediterranean, or a Balanced
-                Vegan diet, our experts have hand-crafted the perfect path for
-                you.
+                {t("best_diets.subtitle")}
               </Typography>
 
               <Stack spacing={2.5} sx={{ mb: 5 }}>
-                {FEATURES.map((feature, idx) => (
+                {t("best_diets.features", { returnObjects: true }).map((feature, idx) => (
                   <Stack
                     direction="row"
                     spacing={2}
@@ -179,7 +149,7 @@ export default function BestDiets() {
                   "&:hover": { bgcolor: "var(--saffron-dark)" },
                 }}
               >
-                Explore All Meal Plans
+                {t("best_diets.cta")}
               </Button>
             </Box>
           </Grid>

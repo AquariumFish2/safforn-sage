@@ -12,9 +12,11 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 export default function RecipeCard({ recipe }) {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   return (
     <Card
@@ -23,8 +25,7 @@ export default function RecipeCard({ recipe }) {
         borderRadius: "20px",
         overflow: "hidden",
         height: "100%",
-        width: "350px",
-        maxWidth:"350px",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         cursor: "pointer",
@@ -85,7 +86,7 @@ export default function RecipeCard({ recipe }) {
               textTransform: "uppercase",
             }}
           >
-            View Recipe →
+            {t("recipe_card.view_recipe")} {i18n.language === "ar" ? "←" : "→"}
           </Typography>
         </Box>
 
@@ -118,7 +119,7 @@ export default function RecipeCard({ recipe }) {
         {recipe.readyInMinutes && (
           <Chip
             icon={<AccessTimeIcon sx={{ fontSize: 14, color: "white !important" }} />}
-            label={`${recipe.readyInMinutes} min`}
+            label={`${recipe.readyInMinutes} ${t("recipe_card.min")}`}
             size="small"
             sx={{
               position: "absolute",
@@ -190,16 +191,16 @@ export default function RecipeCard({ recipe }) {
         }}
       >
         {recipe.healthScore !== undefined && (
-          <Stack direction="row" alignItems="center" spacing={0.5}>
+          <Stack direction="row" spacing={0.5} sx={{ alignItems: "center" }}>
             <LocalFireDepartmentIcon sx={{ fontSize: 16, color: "#F95E14" }} />
             <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "#666" }}>
-              Health: {recipe.healthScore}%
+              {t("recipe_card.health")}: {recipe.healthScore}%
             </Typography>
           </Stack>
         )}
         {recipe.servings && (
           <Typography sx={{ fontSize: "12px", color: "#999" }}>
-            {recipe.servings} servings
+            {recipe.servings} {t("recipe_card.servings")}
           </Typography>
         )}
       </Box>

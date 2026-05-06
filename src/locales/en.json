@@ -1,0 +1,341 @@
+{
+  "nav": {
+    "recipes": "Recipes",
+    "pricing": "Pricing",
+    "diets": "Diets",
+    "signup": "SignUp",
+    "login": "Login",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "hero": {
+    "badge": "AI‑Powered Halal Kitchen",
+    "title_part1": "Nourish Your Soul",
+    "title_part2": "With",
+    "title_part3": "Halal",
+    "title_part4": "Cuisine.",
+    "subtitle": "Explore thousands of curated healthy recipes designed to fit your lifestyle — scan ingredients, discover new dishes, and plan meals with the smartest halal food companion.",
+    "search_placeholder": "Find recipes, ingredients…",
+    "scan_button": "Scan Recipe",
+    "stats_value": "12k",
+    "stats_label": "Healthy Recipes",
+    "stats_caption": "Curated by world-class chefs"
+  },
+  "food_cards": {
+    "overline": "Chef's Selection",
+    "title_part1": "Today's Recommended",
+    "title_part2": "Recipes",
+    "view_all": "View Full Menu",
+    "view_recipe": "View Recipe"
+  },
+  "recipes": {
+    "quinoa_tabouli": {
+      "name": "Quinoa Tabouli",
+      "desc": "A refreshing, nutrient-packed take on the classic Middle Eastern salad with fresh herbs and citrus dressing."
+    },
+    "grilled_chicken": {
+      "name": "Grilled Halal Chicken Salad",
+      "desc": "Tender, perfectly spiced grilled chicken over a bed of crisp greens with a tahini drizzle."
+    },
+    "lentil_stew": {
+      "name": "Hearty Lentil Stew",
+      "desc": "A warming, soul-soothing stew packed with fiber-rich lentils, cumin, and aromatic spices."
+    },
+    "tags": {
+      "vegan": "Vegan",
+      "high_protein": "High Protein",
+      "comfort": "Comfort"
+    }
+  },
+  "amazing_chefs": {
+    "overline": "Meet the Masters",
+    "title_part1": "Follow the Most",
+    "title_part2": "Amazing Chefs",
+    "view_profile": "View Profile",
+    "recipes": "Recipes",
+    "followers": "Followers",
+    "exp": "Exp"
+  },
+  "chefs": {
+    "tariq": {
+      "name": "Chef Tariq",
+      "specialty": "Authentic Halal Grill"
+    },
+    "fatima": {
+      "name": "Chef Fatima",
+      "specialty": "Middle Eastern Pastry"
+    },
+    "yusuf": {
+      "name": "Chef Yusuf",
+      "specialty": "Mediterranean Fusion"
+    }
+  },
+  "smart_feature": {
+    "overline": "AI-Powered Kitchen",
+    "title_part1": "Halal Scan: From",
+    "title_part2": "Pantry to Plate",
+    "subtitle": "Not sure what to cook? Snap a photo of your ingredients. Our intelligent engine instantly suggests healthy, delicious halal recipes you can cook right now.",
+    "list": [
+      "Recognizes fresh produce & staples.",
+      "Filters exclusively for halal eats.",
+      "Prioritizes your health goals."
+    ],
+    "cta": "Try Halal Scan Now",
+    "detection_status": "AI DETECTION IN PROGRESS…",
+    "detected_item1_title": "Spices & Herbs Detected",
+    "detected_item1_desc": "Matching with 12 recipes…",
+    "detected_item2_title": "100% Halal Verified",
+    "detected_item2_desc": "Scanning ingredient database",
+    "matched_badge": "Ingredients Matched!"
+  },
+  "best_diets": {
+    "overline": "Lifestyle & Planning",
+    "title_part1": "Follow the Best",
+    "title_part2": "Diets & Planning",
+    "subtitle": "Discover tailored nutritional plans to hit your health goals. Whether you're looking for Keto, Mediterranean, or a Balanced Vegan diet, our experts have hand-crafted the perfect path for you.",
+    "features": [
+      "Customized meal plans based on your caloric needs",
+      "Over 1,000+ keto, vegan, and balanced recipes",
+      "Weekly grocery lists perfectly matched to your diet",
+      "Track your daily macros seamlessly in our app"
+    ],
+    "cta": "Explore All Meal Plans",
+    "expert_badge": "Certified Expert Plans"
+  },
+  "footer": {
+    "about": "About Us",
+    "halal_cert": "Halal Certification",
+    "privacy": "Privacy Policy",
+    "contact": "Contact",
+    "copyright": "© 2024 Saffron & Sage. Nourishing the soul, one halal recipe at a time."
+  },
+  "recipes_page": {
+    "overline": "Explore Our Collection",
+    "title_part1": "Discover Delicious",
+    "title_part2": "Recipes",
+    "subtitle": "Find your next favorite meal from thousands of curated recipes, tailored to your dietary needs and taste preferences.",
+    "showing": "Showing",
+    "of": "of",
+    "recipes_count": "recipes"
+  },
+  "filters": {
+    "craving_title": "What are you craving today?",
+    "search_placeholder": "Search for recipes, ingredients...",
+    "search_button": "Search",
+    "refine_title": "Refine Your Search",
+    "clear_all": "Clear All",
+    "diet_label": "Diet Preference",
+    "any_diet": "Any Diet",
+    "meal_label": "Meal Type",
+    "any_meal": "Any Meal",
+    "apply": "Apply Filters",
+    "search_chip": "Search",
+    "diet_chip": "Diet",
+    "meal_chip": "Meal"
+  },
+  "meal_types": {
+    "main_course": "Main Course",
+    "side_dish": "Side Dish",
+    "dessert": "Dessert",
+    "appetizer": "Appetizer",
+    "salad": "Salad",
+    "breakfast": "Breakfast",
+    "soup": "Soup",
+    "snack": "Snack"
+  },
+  "diet_types": {
+    "vegetarian": "Vegetarian",
+    "vegan": "Vegan",
+    "gluten_free": "Gluten Free",
+    "ketogenic": "Ketogenic",
+    "paleo": "Paleo"
+  },
+  "recipe_list": {
+    "no_recipes_found": "No recipes found",
+    "no_recipes_desc": "Try adjusting your search or filters to discover new delicious recipes!"
+  },
+  "recipe_card": {
+    "view_recipe": "View Recipe",
+    "min": "min",
+    "health": "Health",
+    "servings": "servings"
+  },
+  "recipe_details": {
+    "not_found": "Recipe not found",
+    "back_to_recipes": "Back to Recipes",
+    "back": "Back",
+    "save_recipe": "Save Recipe",
+    "prep_time": "Prep Time",
+    "servings_label": "Servings",
+    "health_score": "Health Score",
+    "ingredients": "Ingredients",
+    "instructions": "Instructions",
+    "no_instructions": "No instructions available for this recipe.",
+    "about_recipe": "About This Recipe"
+  },
+  "pricing": {
+    "hero": {
+      "overline": "PRICING",
+      "title_part1": "One plan for every",
+      "title_part2": "kitchen",
+      "subtitle": "Simple, transparent pricing. No hidden fees, no surprises. Cancel anytime."
+    },
+    "tiers": {
+      "most_popular": "Most Popular",
+      "free": {
+        "title": "Free",
+        "description": "Dip your toes into halal cooking.",
+        "period": "forever",
+        "button": "Start for free"
+      },
+      "smart": {
+        "title": "Smart",
+        "description": "Elevate your home cooking game.",
+        "period": "per month",
+        "button": "Get Smart"
+      },
+      "family": {
+        "title": "Family",
+        "description": "Delight every member of the family.",
+        "period": "per month",
+        "button": "Go Family"
+      }
+    },
+    "features": {
+      "basic_recipes": "Access to basic recipes",
+      "save_favorites": "Save up to 10 favorites",
+      "community": "Community forum access",
+      "ad_free": "Ad-free experience",
+      "nutritional": "Nutritional breakdowns",
+      "meal_planning": "Meal planning tools",
+      "chef_curated_collections": "Chef-curated collections",
+      "all_premium": "All premium recipes",
+      "unlimited_favorites": "Unlimited favorites",
+      "basic_meal_planning": "Basic meal planning",
+      "priority_support": "Priority support",
+      "everything_smart": "Everything in Smart",
+      "family_accounts": "Up to 6 family accounts",
+      "advanced_planning": "Advanced meal planning & grocery lists",
+      "custom_servings": "Customizable serving sizes",
+      "priority_customer_support": "Priority customer support",
+      "early_access": "Early access to new features"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Everything you need to know before getting started.",
+      "q1": "Can I switch plans later?",
+      "a1": "Absolutely. You can upgrade or downgrade at any time. Changes take effect immediately and we'll pro-rate the difference.",
+      "q2": "What happens to my favorites if I downgrade?",
+      "a2": "If you downgrade to Free, your extra favorites are safely stored. They'll be waiting for you when you upgrade again — we never delete your data.",
+      "q3": "Do you offer refunds?",
+      "a3": "We offer a 14-day money-back guarantee for all new paid subscriptions, no questions asked.",
+      "q4": "Is the payment secure?",
+      "a4": "Yes. All payments are securely processed by Stripe. We never store your payment details on our servers."
+    },
+    "cta": {
+      "title": "Not sure where to start?",
+      "subtitle": "Try the Smart plan free for 14 days. No credit card required.",
+      "start_trial": "Start free trial",
+      "contact": "Contact us"
+    }
+  },
+  "diets_page": {
+    "hero": {
+      "overline": "Diets & Meal Planning",
+      "title": "Your Journey to a Healthier You",
+      "subtitle": "Discover the perfect balance of nutrition and flavor. Tailored meal plans to suit your lifestyle, goals, and halal requirements."
+    },
+    "nutrition_tip": "Nutrition Tip of the Day",
+    "choose_path": "Choose Your Path",
+    "diet_card": {
+      "explore": "Explore",
+      "featured_recipe": "Featured Recipe",
+      "premium": "PREMIUM",
+      "featured_today": "Featured Today",
+      "recipe_unavailable": "Recipe currently unavailable"
+    },
+    "diets": {
+      "vegan": {
+        "name": "Vegan",
+        "description": "Purely plant-based recipes for a vibrant, healthy lifestyle."
+      },
+      "ketogenic": {
+        "name": "Ketogenic",
+        "description": "Focus on high fats and low carbs to achieve metabolic keto-perfection."
+      },
+      "paleo": {
+        "name": "Paleo",
+        "description": "Eat like our ancestors with whole, unprocessed foods and lean proteins."
+      },
+      "vegetarian": {
+        "name": "Vegetarian",
+        "description": "Meat-free delights that don't compromise on flavor or nutrition."
+      },
+      "gluten_free": {
+        "name": "Gluten-Free",
+        "description": "Carefully curated dishes for those sensitive to gluten but hungry for taste."
+      },
+      "pescetarian": {
+        "name": "Pescetarian",
+        "description": "A flexible plant-forward diet supplemented with sustainable seafood."
+      }
+    },
+    "community": {
+      "overline": "OUR COMMUNITY",
+      "title_part1": "Transform Your Life with a",
+      "title_part2": "Curated Diet",
+      "description": "Eating well shouldn't be a chore. We provide science-backed, Halal-focused meal plans that adapt to your unique lifestyle. Join thousands of members who have already discovered their perfect nutritional path.",
+      "join_count": "Join 12k+ healthy eaters",
+      "stats": {
+        "recipes": "Healthy Recipes",
+        "members": "Community Members",
+        "nutritionists": "Certified Nutritionists"
+      },
+      "buttons": {
+        "start": "Start Your Journey",
+        "plans": "View Premium Plans"
+      }
+    }
+  },
+  "profile": {
+    "success_title": "Subscription Activated!",
+    "success_desc": "Welcome to the Saffron & Sage family. Your premium features are now unlocked.",
+    "user_placeholder": "User",
+    "sign_out": "Sign Out"
+  },
+  "auth": {
+    "login": {
+      "welcome": "Welcome back",
+      "subtitle": "Please enter your details to sign in.",
+      "google": "Sign in with Google",
+      "divider": "or sign in with email",
+      "email_label": "Email Address",
+      "password_label": "Password",
+      "button": "Sign In",
+      "no_account": "Don't have an account?",
+      "signup_link": "Sign up"
+    },
+    "register": {
+      "title": "Create an account",
+      "subtitle": "Start your journey to a healthier lifestyle today.",
+      "full_name_label": "Full Name",
+      "email_label": "Email Address",
+      "password_label": "Password",
+      "button": "Create Account",
+      "has_account": "Already have an account?",
+      "login_link": "Sign in",
+      "google": "Sign up with Google",
+      "divider": "or sign up with email"
+    },
+    "side_text": {
+      "title": "Nourishing the soul, one halal recipe at a time.",
+      "desc": "Discover thousands of meticulously curated halal recipes. From quick weekday dinners to elaborate weekend feasts."
+    },
+    "errors": {
+      "login_failed": "Failed to log in.",
+      "register_failed": "Failed to create account.",
+      "register_success": "Registration successful! Please check your email to confirm your account.",
+      "google_failed": "Failed to sign in with Google."
+    }
+  }
+}

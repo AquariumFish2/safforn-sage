@@ -1,40 +1,12 @@
-import { useState } from "react";
-import {
-  Box,
-  Container,
-  Typography,
-  Card,
-  CardContent,
-  CardActions,
-  Button,
-  Grid,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Chip,
-  Stack,
-  Divider,
-  Collapse,
-  IconButton,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
-import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
-import FreeBreakfastIcon from "@mui/icons-material/FreeBreakfast";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Box, Container, Typography, Button, Grid, Stack } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import PricingCard from "./components/PricingCard";
 import Hero from "./components/Hero";
 import FAQ from "./components/FAQ";
 import { tiers } from "./pricingData";
 
-
-
 export default function Pricing() {
+  const { t } = useTranslation();
   return (
     <Box sx={{ bgcolor: "#FAFAFA", minHeight: "100vh" }}>
       {/* Hero */}
@@ -42,9 +14,13 @@ export default function Pricing() {
 
       {/* Cards */}
       <Container maxWidth="lg" sx={{ pb: 12 }}>
-        <Grid container spacing={3} sx={{justifyContent:"center" }}>
+        <Grid container spacing={3} sx={{ justifyContent: "center" }}>
           {tiers.map((tier) => (
-            <Grid item xs={12} md={4} key={tier.title} sx={{ display: "flex"}}>
+            <Grid
+              size={{ xs: 12, md: 4 }}
+              key={tier.title}
+              sx={{ display: "flex" }}
+            >
               <PricingCard tier={tier} />
             </Grid>
           ))}
@@ -74,12 +50,23 @@ export default function Pricing() {
               fontSize: { xs: "1.6rem", md: "2rem" },
             }}
           >
-            Not sure where to start?
+            {t("pricing.cta.title")}
           </Typography>
-          <Typography sx={{ color: "rgba(255,255,255,0.75)", mb: 4, maxWidth: 460, mx: "auto" }}>
-            Try the Smart plan free for 14 days. No credit card required.
+          <Typography
+            sx={{
+              color: "rgba(255,255,255,0.75)",
+              mb: 4,
+              maxWidth: 460,
+              mx: "auto",
+            }}
+          >
+            {t("pricing.cta.subtitle")}
           </Typography>
-          <Stack direction={{ xs: "column", sm: "row" }} spacing={2} justifyContent="center">
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={2}
+            sx={{ justifyContent: "center" }}
+          >
             <Button
               variant="contained"
               sx={{
@@ -94,7 +81,7 @@ export default function Pricing() {
                 "&:hover": { bgcolor: "#FFDBCF" },
               }}
             >
-              Start free trial
+              {t("pricing.cta.start_trial")}
             </Button>
             <Button
               variant="outlined"
@@ -107,10 +94,13 @@ export default function Pricing() {
                 fontSize: "1rem",
                 color: "white",
                 borderColor: "rgba(255,255,255,0.45)",
-                "&:hover": { borderColor: "white", bgcolor: "rgba(255,255,255,0.1)" },
+                "&:hover": {
+                  borderColor: "white",
+                  bgcolor: "rgba(255,255,255,0.1)",
+                },
               }}
             >
-              Contact us
+              {t("pricing.cta.contact")}
             </Button>
           </Stack>
         </Box>

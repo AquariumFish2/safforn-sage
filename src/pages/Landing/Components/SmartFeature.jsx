@@ -1,68 +1,110 @@
-import React from "react";
 import {
-  Box, Button, Stack, Typography, Container,
-  Grid, Paper, Avatar,
+  Box,
+  Button,
+  Stack,
+  Typography,
+  Container,
+  Grid,
+  Paper,
+  Avatar,
 } from "@mui/material";
 import SmartFeatureImage from "../../../assets/images/smart-feature.jfif";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import LocalDiningIcon from "@mui/icons-material/LocalDining";
-import ScienceIcon from "@mui/icons-material/Science";
+import CheckIcon from "@mui/icons-material/CheckCircle";
+import AutoIcon from "@mui/icons-material/AutoAwesome";
+import FoodIcon from "@mui/icons-material/LocalDining";
+import LabIcon from "@mui/icons-material/Science";
+import { useTranslation } from "react-i18next";
+
+const DetectedItem = ({ icon: Icon, title, desc, color }) => (
+  <Stack
+    direction="row"
+    spacing={2}
+    sx={{
+      p: 1.5,
+      bgcolor: `var(--${color}-light)`,
+      borderRadius: "14px",
+      alignItems: "center",
+    }}
+  >
+    <Avatar sx={{ bgcolor: "white", color: `var(--${color})` }}>
+      <Icon />
+    </Avatar>
+    <Box>
+      <Typography variant="body2" sx={{ fontWeight: 700 }}>
+        {title}
+      </Typography>
+      <Typography variant="caption" sx={{ color: "var(--warm-gray)" }}>
+        {desc}
+      </Typography>
+    </Box>
+  </Stack>
+);
 
 export default function SmartFeature() {
+  const { t } = useTranslation();
   return (
-    <Box sx={{ py: { xs: 10, md: 18 }, bgcolor: "var(--cream)", overflow: "hidden" }}>
+    <Box
+      sx={{
+        py: { xs: 10, md: 18 },
+        bgcolor: "var(--cream)",
+        overflow: "hidden",
+      }}
+    >
       <Container maxWidth="lg">
-        <Grid container spacing={{ xs: 6, md: 8 }} alignItems="center">
-          {/* Content Side */}
+        <Grid
+          container
+          spacing={{ xs: 6, md: 8 }}
+          sx={{ alignItems: "center" }}
+        >
           <Grid size={{ xs: 12, md: 6 }}>
-            <Box>
-              <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 2 }}>
-                <AutoAwesomeIcon sx={{ color: "var(--saffron)", fontSize: 20 }} />
-                <Typography
-                  variant="overline"
-                  sx={{ fontWeight: 700, letterSpacing: 3, color: "var(--saffron)" }}
-                >
-                  AI-Powered Kitchen
-                </Typography>
-              </Stack>
-
+            <Stack
+              direction="row"
+              spacing={1}
+              mb={2}
+              sx={{ color: "var(--saffron)" }}
+            >
+              <AutoIcon fontSize="small" />
               <Typography
-                variant="h2"
-                sx={{
-                  fontSize: { xs: "2.2rem", md: "3.2rem" },
-                  mb: 3,
-                  lineHeight: 1.15,
-                  color: "var(--charcoal)",
-                }}
+                variant="overline"
+                sx={{ fontWeight: 700, letterSpacing: 3 }}
               >
-                Halal Scan: From{" "}
-                <Box component="span" sx={{ color: "var(--saffron)", fontStyle: "italic" }}>
-                  Pantry to Plate
-                </Box>
+                {t("smart_feature.overline")}
               </Typography>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  color: "var(--warm-gray)",
-                  fontSize: "1.1rem",
-                  mb: 5,
-                  lineHeight: 1.8,
-                }}
+            </Stack>
+            <Typography
+              variant="h2"
+              sx={{ fontSize: { xs: "2.2rem", md: "3.2rem" }, mb: 3 }}
+            >
+              {t("smart_feature.title_part1")}{" "}
+              <Box
+                component="span"
+                sx={{ color: "var(--saffron)", fontStyle: "italic" }}
               >
-                Not sure what to cook? Snap a photo of your ingredients. Our
-                intelligent engine instantly suggests healthy, delicious halal
-                recipes you can cook right now.
-              </Typography>
-
-              <Stack spacing={2.5} sx={{ mb: 5 }}>
-                {[
-                  "Recognizes fresh produce & staples.",
-                  "Filters exclusively for halal eats.",
-                  "Prioritizes your health goals.",
-                ].map((text, i) => (
-                  <Stack key={i} direction="row" spacing={2} alignItems="center">
+                {t("smart_feature.title_part2")}
+              </Box>
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "var(--warm-gray)",
+                fontSize: "1.1rem",
+                mb: 5,
+                lineHeight: 1.8,
+              }}
+            >
+              {t("smart_feature.subtitle")}
+            </Typography>
+            <Stack spacing={2} mb={5}>
+              {t("smart_feature.list", { returnObjects: true }).map(
+                (txt, i) => (
+                  <Stack
+                    key={i}
+                    direction="row"
+                    spacing={2}
+                    sx={{
+                      alignItems: "center",
+                    }}
+                  >
                     <Box
                       sx={{
                         bgcolor: "var(--sage-light)",
@@ -71,52 +113,30 @@ export default function SmartFeature() {
                         display: "flex",
                       }}
                     >
-                      <CheckCircleIcon sx={{ color: "var(--sage)", fontSize: 22 }} />
+                      <CheckIcon sx={{ color: "var(--sage)", fontSize: 22 }} />
                     </Box>
-                    <Typography sx={{ fontWeight: 600, color: "var(--charcoal)" }}>
-                      {text}
-                    </Typography>
+                    <Typography sx={{ fontWeight: 600 }}>{txt}</Typography>
                   </Stack>
-                ))}
-              </Stack>
-
-              <Button
-                variant="contained"
-                sx={{
-                  bgcolor: "var(--saffron)",
-                  borderRadius: "14px",
-                  px: 5,
-                  py: 1.8,
-                  fontWeight: 700,
-                  fontSize: "1rem",
-                  textTransform: "none",
-                  boxShadow: "0 8px 24px rgba(128, 42, 0, 0.2)",
-                  "&:hover": { bgcolor: "var(--saffron-dark)" },
-                }}
-              >
-                Try Halal Scan Now
-              </Button>
-            </Box>
+                ),
+              )}
+            </Stack>
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: "var(--saffron)",
+                borderRadius: "14px",
+                px: 5,
+                py: 1.8,
+                fontWeight: 700,
+                textTransform: "none",
+                "&:hover": { bgcolor: "var(--saffron-dark)" },
+              }}
+            >
+              {t("smart_feature.cta")}
+            </Button>
           </Grid>
-
-          {/* Visual Side */}
           <Grid size={{ xs: 12, md: 6 }}>
             <Box sx={{ position: "relative" }}>
-              {/* Decorative background */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: "8%",
-                  left: "8%",
-                  width: "100%",
-                  height: "100%",
-                  bgcolor: "var(--saffron-light)",
-                  borderRadius: "32px",
-                  zIndex: 0,
-                  transform: "rotate(3deg)",
-                }}
-              />
-
               <Paper
                 elevation={0}
                 sx={{
@@ -124,21 +144,18 @@ export default function SmartFeature() {
                   zIndex: 1,
                   borderRadius: "32px",
                   overflow: "hidden",
-                  boxShadow: "0 32px 64px rgba(0,0,0,0.1)",
-                  bgcolor: "white",
                   border: "1px solid var(--border)",
+                  boxShadow: "0 32px 64px rgba(0,0,0,0.1)",
                 }}
               >
                 <Box sx={{ height: { xs: 240, md: 320 }, overflow: "hidden" }}>
                   <Box
                     component="img"
                     src={SmartFeatureImage}
-                    alt="AI Recognition"
                     sx={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
                 </Box>
-
-                <Box sx={{ p: { xs: 3, md: 4 } }}>
+                <Box sx={{ p: 4 }}>
                   <Typography
                     variant="caption"
                     sx={{
@@ -149,67 +166,29 @@ export default function SmartFeature() {
                       display: "block",
                     }}
                   >
-                    AI DETECTION IN PROGRESS…
+                    {t("smart_feature.detection_status")}
                   </Typography>
-
                   <Stack spacing={2}>
-                    <Stack
-                      direction="row"
-                      spacing={2}
-                      alignItems="center"
-                      sx={{
-                        p: 1.5,
-                        bgcolor: "var(--saffron-light)",
-                        borderRadius: "14px",
-                      }}
-                    >
-                      <Avatar sx={{ bgcolor: "white", color: "var(--saffron)" }}>
-                        <LocalDiningIcon />
-                      </Avatar>
-                      <Box>
-                        <Typography variant="body2" sx={{ fontWeight: 700 }}>
-                          Spices & Herbs Detected
-                        </Typography>
-                        <Typography variant="caption" sx={{ color: "var(--warm-gray)" }}>
-                          Matching with 12 recipes…
-                        </Typography>
-                      </Box>
-                    </Stack>
-
-                    <Stack
-                      direction="row"
-                      spacing={2}
-                      alignItems="center"
-                      sx={{
-                        p: 1.5,
-                        bgcolor: "var(--sage-light)",
-                        borderRadius: "14px",
-                      }}
-                    >
-                      <Avatar sx={{ bgcolor: "white", color: "var(--sage)" }}>
-                        <ScienceIcon />
-                      </Avatar>
-                      <Box>
-                        <Typography variant="body2" sx={{ fontWeight: 700 }}>
-                          100% Halal Verified
-                        </Typography>
-                        <Typography variant="caption" sx={{ color: "var(--warm-gray)" }}>
-                          Scanning ingredient database
-                        </Typography>
-                      </Box>
-                    </Stack>
+                    <DetectedItem
+                      icon={FoodIcon}
+                      title={t("smart_feature.detected_item1_title")}
+                      desc={t("smart_feature.detected_item1_desc")}
+                      color="saffron"
+                    />
+                    <DetectedItem
+                      icon={LabIcon}
+                      title={t("smart_feature.detected_item2_title")}
+                      desc={t("smart_feature.detected_item2_desc")}
+                      color="sage"
+                    />
                   </Stack>
                 </Box>
               </Paper>
-
-              {/* Floating Success Badge */}
               <Paper
-                elevation={0}
-                className="gentle-float"
                 sx={{
                   position: "absolute",
-                  top: { xs: -12, md: -20 },
-                  right: { xs: 8, md: -20 },
+                  top: -20,
+                  right: -20,
                   bgcolor: "var(--sage)",
                   color: "white",
                   p: 2,
@@ -218,10 +197,14 @@ export default function SmartFeature() {
                   boxShadow: "0 10px 30px rgba(74, 124, 89, 0.35)",
                 }}
               >
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <CheckCircleIcon fontSize="small" />
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignItems: "center" }}
+                >
+                  <CheckIcon fontSize="small" />
                   <Typography sx={{ fontWeight: 700, fontSize: "0.85rem" }}>
-                    Ingredients Matched!
+                    {t("smart_feature.matched_badge")}
                   </Typography>
                 </Stack>
               </Paper>

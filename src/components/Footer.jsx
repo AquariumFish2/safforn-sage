@@ -1,4 +1,5 @@
 import { Box, Container, Typography, Link, Stack } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
 
 const FooterContainer = styled(Box)(() => ({
@@ -53,6 +54,7 @@ const CopyrightText = styled(Typography)(({ theme }) => ({
 }));
 
 export default function Footer() {
+  const { t } = useTranslation();
   return (
     <FooterContainer>
       <Container maxWidth="lg">
@@ -67,12 +69,12 @@ export default function Footer() {
           <Stack
             direction={{ xs: "column", sm: "row" }}
             spacing={{ xs: 2, sm: 4 }}
-            sx={{ marginLeft: { md: "auto" } }}
+            sx={{ marginInlineStart: { md: "auto" } }}
           >
-            <FooterLink href="#">About Us</FooterLink>
-            <FooterLink href="#">Halal Certification</FooterLink>
-            <FooterLink href="#">Privacy Policy</FooterLink>
-            <FooterLink href="#">Contact</FooterLink>
+            <FooterLink href="#">{t("footer.about")}</FooterLink>
+            <FooterLink href="#">{t("footer.halal_cert")}</FooterLink>
+            <FooterLink href="#">{t("footer.privacy")}</FooterLink>
+            <FooterLink href="#">{t("footer.contact")}</FooterLink>
           </Stack>
         </FooterContent>
 
@@ -81,8 +83,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <CopyrightText>
-          © 2024 Saffron & Sage. Nourishing the soul, one halal recipe at a
-          time.
+          {t("footer.copyright")}
         </CopyrightText>
       </Container>
     </FooterContainer>

@@ -10,20 +10,21 @@ import {
   AlertTitle,
 } from "@mui/material";
 import { useAuth } from "../../context/AuthContext";
-import { supabase } from "../../supabase";
 import { useNavigate, useLocation } from "react-router";
+import { useTranslation } from "react-i18next";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 export default function Profile() {
-  const { user } = useAuth();
+  const { t, i18n } = useTranslation();
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const isSuccess = queryParams.get("checkout") === "success";
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
+    await signOut();
     navigate("/");
   };
 
@@ -43,13 +44,12 @@ export default function Profile() {
             <Alert
               severity="success"
               icon={<CheckCircleIcon fontSize="inherit" />}
-              sx={{ mb: 4, borderRadius: "16px", textAlign: "left" }}
+              sx={{ mb: 4, borderRadius: "16px", textAlign: i18n.language === 'ar' ? 'right' : 'left' }}
             >
               <AlertTitle sx={{ fontWeight: "bold" }}>
-                Subscription Activated!
+                {t("profile.success_title")}
               </AlertTitle>
-              Welcome to the Saffron & Sage family. Your premium features are
-              now unlocked.
+              {t("profile.success_desc")}
             </Alert>
           )}
           <Avatar
@@ -69,13 +69,13 @@ export default function Profile() {
             variant="h4"
             sx={{ fontWeight: "bold", mb: 1, color: "#1a1a1a" }}
           >
-            {user?.user_metadata?.full_name || "User"}
+            {user?.user_metadata?.full_name || t("profile.user_placeholder")}
           </Typography>
           <Typography variant="body1" sx={{ color: "#666", mb: 4 }}>
             {user?.email}
           </Typography>
 
-          <Stack direction="row" spacing={2} justifyContent="center">
+          <Stack direction="row" spacing={2} sx={{ justifyContent: "center" }}>
             <Button
               variant="contained"
               startIcon={<LogoutIcon />}
@@ -92,7 +92,7 @@ export default function Profile() {
                 },
               }}
             >
-              Sign Out
+              {t("profile.sign_out")}
             </Button>
           </Stack>
         </Paper>

@@ -6,8 +6,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useAuth } from "../../../context/AuthContext";
 import { supabase } from "../../../supabase";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 export default function PricingCard({ tier }) {
+    const { t } = useTranslation();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [expanded, setExpanded] = useState(!isMobile);
@@ -79,7 +81,7 @@ export default function PricingCard({ tier }) {
                         letterSpacing: 1.5,
                     }}
                 >
-                    ✦ Most Popular
+                    ✦ {t("pricing.tiers.most_popular")}
                 </Box>
             )}
 
@@ -101,7 +103,7 @@ export default function PricingCard({ tier }) {
                         {tier.icon}
                     </Box>
                     <Typography variant="h6" sx={{ fontWeight: 700, color: "#1a1a1a" }}>
-                        {tier.title}
+                        {t(tier.title)}
                     </Typography>
                     {isMobile && (
                         <IconButton
@@ -125,13 +127,13 @@ export default function PricingCard({ tier }) {
                         {tier.price}
                     </Typography>
                 </Stack>
-                <Typography sx={{ color: "#aaa", fontSize: "0.82rem", mb: isMobile ? 0 : 2, textAlign: "end" }}>
-                    {tier.period}
+                <Typography sx={{ color: "#aaa", fontSize: "0.82rem", mb: isMobile ? 0 : 2, textAlign: { xs: "start", md: "end" } }}>
+                    {t(tier.period)}
                 </Typography>
 
                 <Collapse in={expanded}>
                     <Typography variant="body2" sx={{ color: "#777", mt: 1.5, mb: 2, minHeight: 36 }}>
-                        {tier.description}
+                        {t(tier.description)}
                     </Typography>
 
                     <Divider sx={{ borderColor: "#f0ede9", mb: 2 }} />
@@ -147,11 +149,7 @@ export default function PricingCard({ tier }) {
                                     )}
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary={feature.text}
-                                    primaryTypographyProps={{
-                                        fontSize: "0.87rem",
-                                        color: feature.included ? "#333" : "#bbb",
-                                    }}
+                                    primary={t(feature.text)}
                                 />
                             </ListItem>
                         ))}
@@ -175,7 +173,7 @@ export default function PricingCard({ tier }) {
                             ...tier.buttonSx,
                         }}
                     >
-                        {loading ? <CircularProgress size={24} color="inherit" /> : tier.buttonText}
+                        {loading ? <CircularProgress size={24} color="inherit" /> : t(tier.buttonText)}
                     </Button>
                 </CardActions>
             </Collapse>

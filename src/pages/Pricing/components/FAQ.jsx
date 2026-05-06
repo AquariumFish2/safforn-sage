@@ -1,16 +1,17 @@
-import React from 'react'
 import { Box, Stack, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { faqs } from '../pricingData'
 
 export default function FAQ() {
+    const { t } = useTranslation();
     return (
         <Box sx={{ mt: 14 }}>
             <Box sx={{ textAlign: "center", mb: 6 }}>
                 <Typography variant="h4" sx={{ fontWeight: 800, color: "#1a1a1a", mb: 1 }}>
-                    Frequently Asked Questions
+                    {t("pricing.faq.title")}
                 </Typography>
                 <Typography sx={{ color: "#777" }}>
-                    Everything you need to know before getting started.
+                    {t("pricing.faq.subtitle")}
                 </Typography>
             </Box>
 
@@ -36,10 +37,10 @@ export default function FAQ() {
                         <Typography
                             sx={{ fontWeight: 700, color: "#802A00", mb: 1, fontSize: "1rem" }}
                         >
-                            {faq.q}
+                            {t(faq.q)}
                         </Typography>
                         <Typography sx={{ color: "#555", lineHeight: 1.8, fontSize: "0.9rem" }}>
-                            {faq.a}
+                            {t(faq.a)}
                         </Typography>
                     </Box>
                 ))}

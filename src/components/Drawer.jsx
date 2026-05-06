@@ -1,4 +1,3 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -11,17 +10,24 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Avatar, Button, Stack, Typography } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
-import { supabase } from "../supabase";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
+import LanguageIcon from "@mui/icons-material/Language";
 
 export default function TemporaryDrawer({ showDrawer, handleDrawerClose }) {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
+    await signOut();
     handleDrawerClose();
     navigate("/");
+  };
+
+  const toggleLanguage = () => {
+    const nextLanguage = i18n.language === "en" ? "ar" : "en";
+    i18n.changeLanguage(nextLanguage);
   };
 
   const DrawerList = (
@@ -42,26 +48,26 @@ export default function TemporaryDrawer({ showDrawer, handleDrawerClose }) {
           Saffron & Sage
         </Typography>
       </Box>
-      
+
       <List onClick={handleDrawerClose}>
-        {["Recipes", "Pricing", "Diets"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton onClick={() => {
-              if (text === "Recipes") navigate("/recipes");
-              if (text === "Pricing") navigate("/pricing");
-              if (text === "Diets") navigate("/diets");
-            }}>
+        {[
+          { text: "Recipes", key: "nav.recipes", path: "/recipes" },
+          { text: "Pricing", key: "nav.pricing", path: "/pricing" },
+          { text: "Diets", key: "nav.diets", path: "/diets" },
+        ].map((item, index) => (
+          <ListItem key={item.text} disablePadding>
+            <ListItemButton onClick={() => navigate(item.path)}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={t(item.key)} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-      
+
       <Divider />
-      
+
       <Stack sx={{ p: 2 }} spacing={2}>
         {!user ? (
           <>
@@ -70,7 +76,7 @@ export default function TemporaryDrawer({ showDrawer, handleDrawerClose }) {
               variant="outlined"
               onClick={() => {
                 handleDrawerClose();
-                navigate("/login");
+                navigate("/auth?mode=login");
               }}
               sx={{
                 color: "#802A00",
@@ -78,21 +84,21 @@ export default function TemporaryDrawer({ showDrawer, handleDrawerClose }) {
                 "&:hover": { borderColor: "#5c1e00", bgcolor: "#FFDBCF" },
               }}
             >
-              Login
+              {t("nav.login")}
             </Button>
             <Button
               fullWidth
               variant="contained"
               onClick={() => {
                 handleDrawerClose();
-                navigate("/register");
+                navigate("/auth?mode=signup");
               }}
               sx={{
                 bgcolor: "#802A00",
                 "&:hover": { bgcolor: "#5c1e00" },
               }}
             >
-              Sign Up
+              {t("nav.signup")}
             </Button>
           </>
         ) : (
@@ -107,7 +113,7 @@ export default function TemporaryDrawer({ showDrawer, handleDrawerClose }) {
               sx={{ color: "#802A00", justifyContent: "flex-start" }}
               startIcon={<Avatar sx={{ width: 24, height: 24 }} />}
             >
-              Profile
+              {t("nav.profile")}
             </Button>
             <Button
               fullWidth
@@ -119,10 +125,22 @@ export default function TemporaryDrawer({ showDrawer, handleDrawerClose }) {
                 "&:hover": { borderColor: "#5c1e00", bgcolor: "#FFDBCF" },
               }}
             >
-              Logout
+              {t("nav.logout")}
             </Button>
           </>
         )}
+
+        <Divider />
+
+        <Button
+          fullWidth
+          variant="text"
+          onClick={toggleLanguage}
+          startIcon={<LanguageIcon />}
+          sx={{ color: "#802A00", justifyContent: "flex-start" }}
+        >
+          {i18n.language === "en" ? "العربية (AR)" : "English (EN)"}
+        </Button>
       </Stack>
     </Box>
   );

@@ -9,19 +9,16 @@ const corsHeaders = {
 console.log("Edge Function 'create-checkout-session' loaded.");
 
 serve(async (req) => {
-  // 1. Handle CORS Preflight
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
 
   try {
-    // 2. Parse Request Body
     const body = await req.json();
     const { priceId, userId, userEmail } = body;
 
     console.log(`Request received for: ${userEmail}`);
 
-    // 3. Initialize Stripe
     const stripeSecret = Deno.env.get('STRIPE_SECRET_KEY');
     if (!stripeSecret) {
       console.error("Missing STRIPE_SECRET_KEY");
@@ -36,7 +33,6 @@ serve(async (req) => {
       httpClient: Stripe.createFetchHttpClient(), // Required for some Deno environments
     });
 
-    // 4. Create Checkout Session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],

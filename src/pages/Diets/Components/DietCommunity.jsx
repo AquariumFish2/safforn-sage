@@ -1,16 +1,17 @@
-import React from "react";
 import { Box, Container, Grid, Typography, Stack, Button, Paper, AvatarGroup, Avatar } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export default function DietCommunity() {
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
   const stats = [
-    { label: "Healthy Recipes", value: "5,000+", icon: "🥗" },
-    { label: "Community Members", value: "12k", icon: "👥" },
-    { label: "Certified Nutritionists", value: "48", icon: "🍎" },
+    { label: t("diets_page.community.stats.recipes"), value: "5,000+", icon: "🥗" },
+    { label: t("diets_page.community.stats.members"), value: "12k", icon: "👥" },
+    { label: t("diets_page.community.stats.nutritionists"), value: "48", icon: "🍎" },
   ];
 
   return (
@@ -32,9 +33,9 @@ export default function DietCommunity() {
       />
 
       <Container maxWidth="lg">
-        <Grid container spacing={8} alignItems="center">
+        <Grid container spacing={8} sx={{ alignItems: "center" }}>
           {/* Left Side: Image & Social Proof */}
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Box sx={{ position: "relative" }}>
               <Box
                 sx={{
@@ -77,7 +78,7 @@ export default function DietCommunity() {
                     <Avatar src="https://i.pravatar.cc/150?u=4" />
                   </AvatarGroup>
                   <Typography variant="body2" sx={{ fontWeight: 700, color: "#802A00" }}>
-                    Join 12k+ healthy eaters
+                    {t("diets_page.community.join_count")}
                   </Typography>
                 </Stack>
               </Paper>
@@ -85,13 +86,13 @@ export default function DietCommunity() {
           </Grid>
 
           {/* Right Side: Content & Stats */}
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Box sx={{ pl: { md: 4 } }}>
               <Typography 
                 variant="overline" 
                 sx={{ color: "#F95E14", fontWeight: 800, letterSpacing: 2, mb: 1, display: "block" }}
               >
-                OUR COMMUNITY
+                {t("diets_page.community.overline")}
               </Typography>
               <Typography 
                 variant="h3" 
@@ -104,19 +105,17 @@ export default function DietCommunity() {
                   lineHeight: 1.2
                 }}
               >
-                Transform Your Life with a <br />
-                <Box component="span" sx={{ color: "#802A00" }}>Curated Diet</Box>
+                {t("diets_page.community.title_part1")} <br />
+                <Box component="span" sx={{ color: "#802A00" }}>{t("diets_page.community.title_part2")}</Box>
               </Typography>
               
               <Typography variant="body1" sx={{ color: "#666", lineHeight: 1.8, mb: 5, fontSize: "1.1rem" }}>
-                Eating well shouldn't be a chore. We provide science-backed, Halal-focused meal plans 
-                that adapt to your unique lifestyle. Join thousands of members who have already 
-                discovered their perfect nutritional path.
+                {t("diets_page.community.description")}
               </Typography>
 
               <Grid container spacing={3} sx={{ mb: 6 }}>
                 {stats.map((stat, idx) => (
-                  <Grid item xs={6} sm={4} key={idx}>
+                  <Grid size={{ xs: 6, sm: 4 }} key={idx}>
                     <Box>
                       <Typography variant="h4" sx={{ fontWeight: 900, color: "#802A00", mb: 0.5 }}>
                         {stat.value}
@@ -133,7 +132,7 @@ export default function DietCommunity() {
                 <Button
                   variant="contained"
                   onClick={() => navigate("/recipes")}
-                  endIcon={<ArrowForwardIcon />}
+                  endIcon={<ArrowForwardIcon sx={{ transform: i18n.language === 'ar' ? 'rotate(180deg)' : 'none' }} />}
                   sx={{
                     px: 4,
                     py: 2,
@@ -146,7 +145,7 @@ export default function DietCommunity() {
                     transition: "all 0.2s ease"
                   }}
                 >
-                  Start Your Journey
+                  {t("diets_page.community.buttons.start")}
                 </Button>
                 <Button
                   variant="outlined"
@@ -163,7 +162,7 @@ export default function DietCommunity() {
                     "&:hover": { borderColor: "#5c1e00", bgcolor: "#FFDBCF" },
                   }}
                 >
-                  View Premium Plans
+                  {t("diets_page.community.buttons.plans")}
                 </Button>
               </Stack>
             </Box>

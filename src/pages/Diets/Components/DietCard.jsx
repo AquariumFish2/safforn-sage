@@ -10,9 +10,11 @@ import {
   Stack,
   Avatar,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 
 export default function DietCard({ diet, featuredRecipe, loading, onExplore }) {
+  const { t } = useTranslation();
   return (
     <Card
       elevation={0}
@@ -24,8 +26,7 @@ export default function DietCard({ diet, featuredRecipe, loading, onExplore }) {
         transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
         height: "100%",
         display: "flex",
-        width:{xs:"100%",sm:"450px",md:"500px"},
-        maxWidth:"500px",
+        width: "100%",
         flexDirection: "column",
         "&:hover": { 
           transform: "translateY(-10px)",
@@ -58,7 +59,7 @@ export default function DietCard({ diet, featuredRecipe, loading, onExplore }) {
             boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
           }}
         >
-          PREMIUM
+          {t("diets_page.diet_card.premium")}
         </Box>
       </Box>
       
@@ -79,10 +80,10 @@ export default function DietCard({ diet, featuredRecipe, loading, onExplore }) {
             border: "1px dashed #ddd",
           }}
         >
-          <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 2 }}>
+          <Stack direction="row" spacing={1.5} sx={{ alignItems: "center", mb: 2 }}>
             <TrendingUpIcon sx={{ color: diet.color, fontSize: 18 }} />
             <Typography variant="caption" sx={{ fontWeight: 800, color: "#999", textTransform: "uppercase" }}>
-              Featured Today
+              {t("diets_page.diet_card.featured_today")}
             </Typography>
           </Stack>
           
@@ -96,7 +97,7 @@ export default function DietCard({ diet, featuredRecipe, loading, onExplore }) {
             </Stack>
           ) : (
             featuredRecipe ? (
-              <Stack direction="row" spacing={2} sx={{ cursor: "pointer" }}>
+              <Stack direction="row" spacing={2} sx={{ alignItems: "center", cursor: "pointer" }}>
                 <Avatar
                   src={featuredRecipe.image}
                   variant="rounded"
@@ -107,12 +108,14 @@ export default function DietCard({ diet, featuredRecipe, loading, onExplore }) {
                     {featuredRecipe.title}
                   </Typography>
                   <Typography variant="caption" sx={{ color: "#999" }}>
-                    {featuredRecipe.readyInMinutes} mins • {featuredRecipe.healthScore} Score
+                    {featuredRecipe.readyInMinutes} {t("recipe_card.min")} • {featuredRecipe.healthScore} {t("recipe_card.health")}
                   </Typography>
                 </Box>
               </Stack>
             ) : (
-              <Typography variant="caption" sx={{ color: "#bbb", fontStyle: "italic" }}>Recipe currently unavailable</Typography>
+              <Typography variant="caption" sx={{ color: "#bbb", fontStyle: "italic" }}>
+                {t("diets_page.diet_card.recipe_unavailable")}
+              </Typography>
             )
           )}
         </Box>
@@ -136,7 +139,7 @@ export default function DietCard({ diet, featuredRecipe, loading, onExplore }) {
             },
           }}
         >
-          Explore {diet.name}
+          {t("diets_page.diet_card.explore")} {diet.name}
         </Button>
       </CardContent>
     </Card>

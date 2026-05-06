@@ -7,19 +7,29 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { useAuth } from "../context/AuthContext";
-import { supabase } from "../supabase";
-
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
+import LanguageIcon from "@mui/icons-material/Language";
 
-const pages = ["Recipes", "Pricing", "Diets"];
+const pages = [
+  { name: "Recipes", key: "nav.recipes", path: "/recipes" },
+  { name: "Pricing", key: "nav.pricing", path: "/pricing" },
+  { name: "Diets", key: "nav.diets", path: "/diets" },
+];
 
 function ResponsiveAppBar({ handleDrawerOpen }) {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
+  const { t, i18n } = useTranslation();
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
+    await signOut();
     navigate("/");
+  };
+
+  const toggleLanguage = () => {
+    const nextLanguage = i18n.language === "en" ? "ar" : "en";
+    i18n.changeLanguage(nextLanguage);
   };
 
   return (
@@ -87,18 +97,8 @@ function ResponsiveAppBar({ handleDrawerOpen }) {
           >
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={() => {
-                  if (page === "Recipes") {
-                    navigate("/recipes");
-                  }
-                  if (page === "Pricing") {
-                    navigate("/pricing");
-                  }
-                  if (page === "Diets") {
-                    navigate("/diets");
-                  }
-                }}
+                key={page.name}
+                onClick={() => navigate(page.path)}
                 sx={{
                   my: 2,
                   color: "black",
@@ -106,25 +106,34 @@ function ResponsiveAppBar({ handleDrawerOpen }) {
                   "&:hover": { bgcolor: "#FFDBCF" },
                 }}
               >
-                {page}
+                {t(page.key)}
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0, display: { xs: "none", md: "block" } }}>
+          <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" }, alignItems: "center" }}>
+            <IconButton
+              onClick={toggleLanguage}
+              sx={{ color: "#802A00", mr: 2,borderRadius:4 }}
+            >
+              <LanguageIcon />
+              <Typography variant="body2" sx={{ ml: 0.5, fontWeight: "bold" }}>
+                {i18n.language === "en" ? "AR" : "EN"}
+              </Typography>
+            </IconButton>
             {!user ? (
               <>
                 <Button 
                   variant="contained" 
                   sx={{ bgcolor: "#802A00", mr: 2, "&:hover": { bgcolor: "#5c1e00" } }}
-                  onClick={() => navigate("/register")}
+                  onClick={() => navigate("/auth?mode=signup")}
                 >
-                  SignUp
+                  {t("nav.signup")}
                 </Button>
                 <Button 
                   sx={{ color: "#802A00" }}
-                  onClick={() => navigate("/login")}
+                  onClick={() => navigate("/auth?mode=login")}
                 >
-                  Login
+                  {t("nav.login")}
                 </Button>
               </>
             ) : (
@@ -134,13 +143,13 @@ function ResponsiveAppBar({ handleDrawerOpen }) {
                   sx={{ bgcolor: "#802A00", mr: 2, "&:hover": { bgcolor: "#5c1e00" } }}
                   onClick={() => navigate("/profile")}
                 >
-                  Profile
+                  {t("nav.profile")}
                 </Button>
                 <Button 
                   sx={{ color: "#802A00" }}
                   onClick={handleSignOut}
                 >
-                  Logout
+                  {t("nav.logout")}
                 </Button>
               </>
             )}

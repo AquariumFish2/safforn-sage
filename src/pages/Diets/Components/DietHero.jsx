@@ -1,8 +1,11 @@
 import React from "react";
 import { Box, Container, Typography, Chip } from "@mui/material";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import { useTranslation } from "react-i18next";
 
 export default function DietHero() {
+  const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -22,7 +25,7 @@ export default function DietHero() {
       <Container maxWidth="md">
         <Chip
           icon={<AutoAwesomeIcon sx={{ color: "white !important", fontSize: "16px" }} />}
-          label="Saffron & Sage Lifestyles"
+          label={t("diets_page.hero.overline")}
           sx={{
             bgcolor: "rgba(255,255,255,0.15)",
             color: "white",
@@ -42,18 +45,13 @@ export default function DietHero() {
             textShadow: "0 4px 12px rgba(0,0,0,0.2)",
           }}
         >
-          The Art of{" "}
-          <Box component="span" sx={{ color: "#FFDBCF" }}>
-            Healthy
-          </Box>{" "}
-          Eating
+          {t("diets_page.hero.title")}
         </Typography>
         <Typography
           variant="h6"
           sx={{ color: "rgba(255,255,255,0.85)", maxWidth: 650, mx: "auto", fontWeight: 400, lineHeight: 1.6 }}
         >
-          Discover the perfect balance of nutrition and flavor. Our curated diets are designed 
-          to nourish your soul while honoring your dietary choices.
+          {t("diets_page.hero.subtitle")}
         </Typography>
       </Container>
     </Box>

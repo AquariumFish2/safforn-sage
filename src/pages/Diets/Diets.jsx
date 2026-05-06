@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 import DietHero from "./Components/DietHero";
 import DietNutritionTip from "./Components/DietNutritionTip";
@@ -8,15 +9,16 @@ import DietCard from "./Components/DietCard";
 import DietCommunity from "./Components/DietCommunity";
 
 const DIET_TYPES = [
-  { name: "Vegan", description: "Purely plant-based recipes for a vibrant, healthy lifestyle.", color: "#2E7D32", image: "https://images.unsplash.com/photo-1484980972926-edee96e0960d?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-  { name: "Ketogenic", description: "Focus on high fats and low carbs to achieve metabolic keto-perfection.", color: "#EF6C00", image: "https://images.unsplash.com/photo-1559058789-672da06263d8?q=80&w=867&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-  { name: "Paleo", description: "Eat like our ancestors with whole, unprocessed foods and lean proteins.", color: "#5D4037", image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=853&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-  { name: "Vegetarian", description: "Meat-free delights that don't compromise on flavor or nutrition.", color: "#689F38", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-  { name: "Gluten-Free", description: "Carefully curated dishes for those sensitive to gluten but hungry for taste.", color: "#D32F2F", image: "https://images.unsplash.com/photo-1540914124281-342587941389?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-  { name: "Pescetarian", description: "A flexible plant-forward diet supplemented with sustainable seafood.", color: "#0097A7", image: "https://images.unsplash.com/photo-1749146878422-292fbe4d6d55?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { key: "vegan", color: "#2E7D32", image: "https://images.unsplash.com/photo-1484980972926-edee96e0960d?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { key: "ketogenic", color: "#EF6C00", image: "https://images.unsplash.com/photo-1559058789-672da06263d8?q=80&w=867&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { key: "paleo", color: "#5D4037", image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=853&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { key: "vegetarian", color: "#689F38", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { key: "gluten_free", color: "#D32F2F", image: "https://images.unsplash.com/photo-1540914124281-342587941389?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { key: "pescetarian", color: "#0097A7", image: "https://images.unsplash.com/photo-1749146878422-292fbe4d6d55?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
 ];
 
 export default function Diets() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [featuredRecipes, setFeaturedRecipes] = useState({});
   const [nutritionTip, setNutritionTip] = useState("");
@@ -32,11 +34,11 @@ export default function Diets() {
           DIET_TYPES.map(async (diet) => {
             try {
               const res = await fetch(
-                `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&diet=${diet.name.toLowerCase()}&number=1&addRecipeInformation=true&sort=popularity`
+                `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&diet=${diet.key.replace("_", " ")}&number=1&addRecipeInformation=true&sort=popularity`
               );
               const data = await res.json();
-              return { diet: diet.name, recipe: data.results?.[0] };
-            } catch (e) { return { diet: diet.name, recipe: null }; }
+              return { diet: diet.key, recipe: data.results?.[0] };
+            } catch (e) { return { diet: diet.key, recipe: null }; }
           })
         );
 
@@ -73,17 +75,22 @@ export default function Diets() {
         <DietNutritionTip loading={loading} nutritionTip={nutritionTip} />
 
         <Typography variant="h4" sx={{ fontWeight: 800, color: "#1a1a1a", mb: 4, textAlign: "center" }}>
-          Choose Your Path
+          {t("diets_page.choose_path")}
         </Typography>
 
-        <Grid container spacing={4} sx={{justifyContent:"center"}}>
+        <Grid container spacing={4}>
           {DIET_TYPES.map((diet) => (
-            <Grid item xs={12} md={6} lg={4} key={diet.name}>
+            <Grid size={{ xs: 12, md: 6, lg: 4 }} key={diet.key}>
               <DietCard
-                diet={diet}
-                featuredRecipe={featuredRecipes[diet.name]}
+                diet={{
+                  name: t(`diets_page.diets.${diet.key}.name`),
+                  description: t(`diets_page.diets.${diet.key}.description`),
+                  color: diet.color,
+                  image: diet.image
+                }}
+                featuredRecipe={featuredRecipes[diet.key]}
                 loading={loading}
-                onExplore={() => navigate(`/recipes?diet=${diet.name.toLowerCase()}`)}
+                onExplore={() => navigate(`/recipes?diet=${diet.key.replace("_", " ")}`)}
               />
             </Grid>
           ))}

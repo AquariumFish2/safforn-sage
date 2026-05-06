@@ -1,8 +1,10 @@
 import React from "react";
 import { Box, Typography, Paper, Divider, Skeleton } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import LightbulbCircleIcon from "@mui/icons-material/LightbulbCircle";
 
 export default function DietNutritionTip({ loading, nutritionTip }) {
+  const { t } = useTranslation();
   return (
     <Paper
       elevation={0}
@@ -34,7 +36,7 @@ export default function DietNutritionTip({ loading, nutritionTip }) {
       </Box>
       <Box sx={{ flexGrow: 1 }}>
         <Typography variant="overline" sx={{ color: "#F95E14", fontWeight: 800, letterSpacing: 2 }}>
-          Daily Culinary Wisdom
+          {t("diets_page.nutrition_tip")}
         </Typography>
         <Typography variant="h6" sx={{ color: "#333", fontWeight: 500, lineHeight: 1.5, mt: 1 }}>
           {loading ? <Skeleton width="80%" /> : `"${nutritionTip}"`}
@@ -43,7 +45,7 @@ export default function DietNutritionTip({ loading, nutritionTip }) {
       <Divider orientation="vertical" flexItem sx={{ display: { xs: "none", md: "block" } }} />
       <Box sx={{ textAlign: "center", minWidth: 150 }}>
         <Typography variant="h4" sx={{ fontWeight: 800, color: "#802A00" }}>20+</Typography>
-        <Typography variant="body2" sx={{ color: "#666" }}>Diets Supported</Typography>
+        <Typography variant="body2" sx={{ color: "#666" }}>{t("landing.best_diets.overline")}</Typography>
       </Box>
     </Paper>
   );

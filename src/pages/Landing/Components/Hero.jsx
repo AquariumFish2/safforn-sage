@@ -1,139 +1,102 @@
-import React from "react";
 import {
-  Box, Button, OutlinedInput, Stack, Typography,
-  Container, Grid, InputAdornment, Paper,
+  Box,
+  Button,
+  OutlinedInput,
+  Stack,
+  Typography,
+  Container,
+  Grid,
+  InputAdornment,
 } from "@mui/material";
 import HeroImage from "../../../assets/images/hero.webp";
 import SearchIcon from "@mui/icons-material/Search";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import { useTranslation } from "react-i18next";
 
 export default function Hero() {
+  const { t } = useTranslation();
   return (
-    <Box
-      sx={{
-        position: "relative",
-        width: "100%",
-        minHeight: { xs: "auto", md: "92vh" },
-        bgcolor: "var(--cream)",
-        display: "flex",
-        alignItems: "center",
-        overflow: "hidden",
-        pt: { xs: 12, md: 0 },
-        pb: { xs: 8, md: 0 },
-      }}
-    >
-      {/* Decorative sage shape behind the image */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: "-10%",
-          right: "-5%",
-          width: "52%",
-          height: "120%",
-          bgcolor: "var(--sage-light)",
-          zIndex: 0,
-          clipPath: "polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%)",
-          display: { xs: "none", md: "block" },
-        }}
-      />
-
-      <Container maxWidth="xl" sx={{ position: "relative", zIndex: 1 }}>
-        <Grid container spacing={{ xs: 6, md: 10 }} alignItems="center">
-          {/* Left — Text Content */}
+    <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: "var(--cream)" }}>
+      <Container maxWidth="xl">
+        <Grid container spacing={6} sx={{ alignItems: "center" }}>
           <Grid size={{ xs: 12, md: 6 }}>
-            <Box sx={{ maxWidth: 620 }}>
+            <Box>
               <Stack
                 direction="row"
                 spacing={1}
-                alignItems="center"
-                className="fade-up"
-                sx={{ mb: 2.5 }}
+                mb={2}
+                sx={{ color: "var(--saffron)" }}
               >
-                <AutoAwesomeIcon sx={{ color: "var(--saffron)", fontSize: 20 }} />
-                <Typography
-                  variant="overline"
-                  sx={{
-                    fontWeight: 700,
-                    letterSpacing: 2.5,
-                    color: "var(--saffron)",
-                    fontSize: "0.8rem",
-                  }}
-                >
-                  AI‑Powered Halal Kitchen
+                <AutoAwesomeIcon fontSize="small" />
+                <Typography variant="overline" sx={{ fontWeight: 700 }}>
+                  {t("hero.badge")}
                 </Typography>
               </Stack>
-
               <Typography
                 variant="h1"
-                className="fade-up"
                 sx={{
                   fontWeight: 400,
-                  fontSize: { xs: "3rem", sm: "4rem", md: "4.8rem" },
-                  lineHeight: 1.1,
+                  fontSize: { xs: "3rem", md: "4.8rem" },
                   mb: 3.5,
-                  color: "var(--charcoal)",
-                  animationDelay: "0.1s",
+                  lineHeight: 1.1,
                 }}
               >
-                Nourish Your Soul{" "}
-                <br />
-                With{" "}
+                {t("hero.title_part1")} <br /> {t("hero.title_part2")}{" "}
                 <Box
                   component="span"
-                  sx={{
-                    color: "var(--saffron)",
-                    fontStyle: "italic",
-                  }}
+                  sx={{ color: "var(--saffron)", fontStyle: "italic" }}
                 >
-                  Halal
+                  {t("hero.title_part3")}
                 </Box>{" "}
-                Cuisine.
+                {t("hero.title_part4")}
               </Typography>
-
               <Typography
                 variant="body1"
-                className="fade-up"
                 sx={{
                   color: "var(--warm-gray)",
                   fontSize: "1.15rem",
                   mb: 5,
                   lineHeight: 1.8,
                   maxWidth: 500,
-                  animationDelay: "0.2s",
                 }}
               >
-                Explore thousands of curated healthy recipes designed to fit
-                your lifestyle — scan ingredients, discover new dishes, and
-                plan meals with the smartest halal food companion.
+                {t("hero.subtitle")}
               </Typography>
-
-              {/* Search Bar */}
               <Box
-                className="fade-up"
                 sx={{
                   bgcolor: "white",
-                  p: 1,
-                  borderRadius: "20px",
-                  boxShadow: "0 16px 48px rgba(128, 42, 0, 0.08)",
+                  p: 1.5,
+                  borderRadius: "24px",
+                  boxShadow: "0 20px 50px rgba(128, 42, 0, 0.08)",
                   display: "flex",
-                  flexDirection: { xs: "column", sm: "row" },
                   gap: 1.5,
-                  animationDelay: "0.3s",
+                  flexDirection: { xs: "column", sm: "row" },
+                  border: "1px solid rgba(128, 42, 0, 0.05)",
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  "&:hover": {
+                    transform: "translateY(-4px)",
+                    boxShadow: "0 25px 60px rgba(128, 42, 0, 0.12)",
+                  },
                 }}
               >
                 <OutlinedInput
                   fullWidth
-                  placeholder="Find recipes, ingredients…"
+                  placeholder={t("hero.search_placeholder")}
                   startAdornment={
                     <InputAdornment position="start">
-                      <SearchIcon sx={{ color: "var(--saffron)" }} />
+                      <SearchIcon sx={{ color: "var(--saffron)", ml: 1 }} />
                     </InputAdornment>
                   }
                   sx={{
-                    borderRadius: "14px",
-                    "& .MuiOutlinedInput-notchedOutline": { border: "none" },
-                    bgcolor: "#F9F7F4",
+                    borderRadius: "18px",
+                    "& fieldset": { border: "none" },
+                    bgcolor: "rgba(128, 42, 0, 0.02)",
+                    "& .MuiOutlinedInput-input": {
+                      py: 2,
+                      fontSize: "1.1rem",
+                      fontWeight: 500,
+                    },
                   }}
                 />
                 <Button
@@ -141,31 +104,31 @@ export default function Hero() {
                   startIcon={<PhotoCameraIcon />}
                   sx={{
                     bgcolor: "var(--saffron)",
-                    borderRadius: "14px",
-                    px: 4,
-                    py: 1.8,
-                    fontWeight: 700,
-                    whiteSpace: "nowrap",
+                    borderRadius: "18px",
+                    px: 5,
+                    py: { xs: 1.8, sm: 2 },
+                    fontWeight: 800,
+                    fontSize: "1rem",
                     textTransform: "none",
-                    fontSize: "0.95rem",
-                    boxShadow: "0 8px 24px rgba(128, 42, 0, 0.25)",
-                    "&:hover": { bgcolor: "var(--saffron-dark)" },
+                    boxShadow: "0 8px 24px rgba(249, 94, 20, 0.25)",
+                    "&:hover": {
+                      bgcolor: "var(--saffron-dark)",
+                      boxShadow: "0 12px 30px rgba(249, 94, 20, 0.35)",
+                      transform: "scale(1.02)",
+                    },
+                    transition: "all 0.2s ease",
                   }}
                 >
-                  Scan Recipe
+                  {t("hero.scan_button")}
                 </Button>
               </Box>
             </Box>
           </Grid>
-
-          {/* Right — Image + Floating Card */}
           <Grid size={{ xs: 12, md: 6 }}>
             <Box sx={{ position: "relative" }}>
               <Box
                 sx={{
-                  position: "relative",
                   height: { xs: "380px", md: "600px" },
-                  width: "100%",
                   borderRadius: "32px",
                   overflow: "hidden",
                   boxShadow: "0 30px 60px rgba(0,0,0,0.12)",
@@ -174,67 +137,16 @@ export default function Hero() {
                 <Box
                   component="img"
                   src={HeroImage}
-                  alt="Delicious Halal Food"
                   sx={{
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    transition: "transform 8s ease",
+                    transition: "8s",
                     "&:hover": { transform: "scale(1.03)" },
                   }}
                 />
-                {/* Soft saffron overlay tint */}
-                <Box
-                  sx={{
-                    position: "absolute",
-                    inset: 0,
-                    bgcolor: "rgba(128, 42, 0, 0.06)",
-                  }}
-                />
               </Box>
-
-              {/* Floating Stats Card */}
-              <Paper
-                elevation={0}
-                className="gentle-float"
-                sx={{
-                  position: "absolute",
-                  bottom: { xs: "-12%", md: "8%" },
-                  left: { xs: "50%", md: "-8%" },
-                  transform: { xs: "translateX(-50%)", md: "none" },
-                  p: 2.5,
-                  borderRadius: "20px",
-                  bgcolor: "white",
-                  boxShadow: "0 16px 40px rgba(0,0,0,0.1)",
-                  border: "1px solid var(--border)",
-                  zIndex: 2,
-                }}
-              >
-                <Stack direction="row" spacing={2} alignItems="center">
-                  <Box
-                    sx={{
-                      bgcolor: "var(--sage-light)",
-                      p: 1.5,
-                      borderRadius: "14px",
-                    }}
-                  >
-                    <Typography
-                      variant="h4"
-                      sx={{ color: "var(--saffron)", fontWeight: 700, fontFamily: "'DM Serif Display', serif" }}
-                    >
-                      12k
-                    </Typography>
-                  </Box>
-                  <Box>
-                    <Typography variant="subtitle2" sx={{ fontWeight: 700, color: "var(--charcoal)" }}>
-                      Healthy Recipes
-                    </Typography>
-                    <Typography variant="caption" sx={{ color: "var(--warm-gray)" }}>
-                      Curated by world-class chefs
-                    </Typography>
-                  </Box>
-                </Stack>
-              </Paper>
+              
             </Box>
           </Grid>
         </Grid>

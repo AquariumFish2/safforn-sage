@@ -11,6 +11,7 @@ import {
   Divider,
 } from "@mui/material";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useParams, useNavigate } from "react-router";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -20,6 +21,7 @@ import FavoriteIcon from "@mui/icons-material/FavoriteBorder";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 export default function RecipeDetails() {
+  const { t, i18n } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const [recipe, setRecipe] = useState(null);
@@ -53,14 +55,14 @@ export default function RecipeDetails() {
     return (
       <Container maxWidth="lg" sx={{ py: 8, textAlign: "center" }}>
         <Typography variant="h4" sx={{ color: "#802A00", fontWeight: 700 }}>
-          Recipe not found
+          {t("recipe_details.not_found")}
         </Typography>
         <Button
           startIcon={<ArrowBackIcon />}
           onClick={() => navigate("/recipes")}
           sx={{ mt: 3, color: "#802A00" }}
         >
-          Back to Recipes
+          {t("recipe_details.back_to_recipes")}
         </Button>
       </Container>
     );
@@ -106,7 +108,6 @@ export default function RecipeDetails() {
           sx={{
             position: "absolute",
             top: 20,
-            left: 20,
             bgcolor: "rgba(255,255,255,0.9)",
             backdropFilter: "blur(10px)",
             borderRadius: "30px",
@@ -117,9 +118,10 @@ export default function RecipeDetails() {
             "&:hover": {
               bgcolor: "white",
             },
+            ...(i18n.language === 'ar' ? { right: 20, left: 'auto' } : { left: 20, right: 'auto' })
           }}
         >
-          Back
+          {t("recipe_details.back")}
         </Button>
         {/* Title on image */}
         <Box
@@ -165,25 +167,25 @@ export default function RecipeDetails() {
             mb: 4,
           }}
         >
-          <Stack direction="row" spacing={3} flexWrap="wrap" useFlexGap justifyContent="center">
+          <Stack direction="row" spacing={3} flexWrap="wrap" useFlexGap sx={{ justifyContent: "center" }}>
             {recipe.readyInMinutes && (
               <StatItem
                 icon={<AccessTimeIcon sx={{ color: "#F95E14" }} />}
-                label="Prep Time"
-                value={`${recipe.readyInMinutes} min`}
+                label={t("recipe_details.prep_time")}
+                value={`${recipe.readyInMinutes} ${t("recipe_card.min")}`}
               />
             )}
             {recipe.servings && (
               <StatItem
                 icon={<PeopleIcon sx={{ color: "#802A00" }} />}
-                label="Servings"
-                value={recipe.servings}
+                label={t("recipe_details.servings_label")}
+                value={`${recipe.servings} ${t("recipe_card.servings")}`}
               />
             )}
             {recipe.healthScore !== undefined && (
               <StatItem
                 icon={<LocalFireDepartmentIcon sx={{ color: "#F95E14" }} />}
-                label="Health Score"
+                label={t("recipe_details.health_score")}
                 value={`${recipe.healthScore}%`}
               />
             )}
@@ -204,7 +206,7 @@ export default function RecipeDetails() {
               },
             }}
           >
-            Save Recipe
+            {t("recipe_details.save_recipe")}
           </Button>
         </Paper>
 
@@ -228,7 +230,7 @@ export default function RecipeDetails() {
             ))}
             {recipe.vegetarian && (
               <Chip
-                label="Vegetarian"
+                label={t("diet_types.vegetarian")}
                 sx={{
                   bgcolor: "#E8F5E9",
                   color: "#2E7D32",
@@ -244,7 +246,7 @@ export default function RecipeDetails() {
 
         <Grid container spacing={4}>
           {/* Ingredients */}
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Paper
               elevation={0}
               sx={{
@@ -264,7 +266,7 @@ export default function RecipeDetails() {
                   mb: 3,
                 }}
               >
-                Ingredients
+                {t("recipe_details.ingredients")}
               </Typography>
               <Stack spacing={1.5}>
                 {recipe.extendedIngredients?.map((ingredient, index) => (
@@ -272,7 +274,7 @@ export default function RecipeDetails() {
                     key={index}
                     direction="row"
                     spacing={1.5}
-                    alignItems="flex-start"
+                    sx={{ alignItems: "flex-start" }}
                   >
                     <CheckCircleIcon
                       sx={{ fontSize: 18, color: "#F95E14", mt: 0.3, flexShrink: 0 }}
@@ -287,7 +289,7 @@ export default function RecipeDetails() {
           </Grid>
 
           {/* Instructions */}
-          <Grid item xs={12} md={8}>
+          <Grid size={{ xs: 12, md: 8 }}>
             <Paper
               elevation={0}
               sx={{
@@ -305,14 +307,14 @@ export default function RecipeDetails() {
                   mb: 3,
                 }}
               >
-                Instructions
+                {t("recipe_details.instructions")}
               </Typography>
 
               {recipe.analyzedInstructions?.[0]?.steps ? (
                 <Stack spacing={3}>
                   {recipe.analyzedInstructions[0].steps.map((step) => (
                     <Box key={step.number}>
-                      <Stack direction="row" spacing={2} alignItems="flex-start">
+                      <Stack direction="row" spacing={2} sx={{ alignItems: "flex-start" }}>
                         <Box
                           sx={{
                             width: 36,
@@ -355,7 +357,7 @@ export default function RecipeDetails() {
                 />
               ) : (
                 <Typography sx={{ color: "#999", fontStyle: "italic" }}>
-                  No instructions available for this recipe.
+                  {t("recipe_details.no_instructions")}
                 </Typography>
               )}
             </Paper>
@@ -382,7 +384,7 @@ export default function RecipeDetails() {
                     mb: 2,
                   }}
                 >
-                  About This Recipe
+                  {t("recipe_details.about_recipe")}
                 </Typography>
                 <Typography
                   sx={{
@@ -410,7 +412,7 @@ export default function RecipeDetails() {
 
 function StatItem({ icon, label, value }) {
   return (
-    <Stack direction="row" alignItems="center" spacing={1.5}>
+    <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
       <Box
         sx={{
           width: 44,
@@ -452,7 +454,7 @@ function RecipeDetailsSkeleton() {
           </Stack>
         </Paper>
         <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Paper elevation={0} sx={{ borderRadius: "20px", p: 3 }}>
               <Skeleton variant="text" width="60%" height={36} />
               {[...Array(8)].map((_, i) => (
@@ -460,7 +462,7 @@ function RecipeDetailsSkeleton() {
               ))}
             </Paper>
           </Grid>
-          <Grid item xs={12} md={8}>
+          <Grid size={{ xs: 12, md: 8 }}>
             <Paper elevation={0} sx={{ borderRadius: "20px", p: 4 }}>
               <Skeleton variant="text" width="40%" height={36} />
               {[...Array(5)].map((_, i) => (
